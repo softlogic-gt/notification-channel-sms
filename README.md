@@ -1,8 +1,8 @@
 # Sms notifications channel for Laravel 5.4+
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/waba/notification-channel-waba.svg?style=flat-square)](https://packagist.org/packages/waba/notification-channel-waba)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/sms/notification-channel-sms.svg?style=flat-square)](https://packagist.org/packages/sms/notification-channel-sms)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Total Downloads](https://img.shields.io/packagist/dt/grupodkt/laravel-notification-channel-waba.svg?style=flat-square)](https://packagist.org/packages/waba/notification-channel-waba)
+[![Total Downloads](https://img.shields.io/packagist/dt/grupodkt/laravel-notification-channel-sms.svg?style=flat-square)](https://packagist.org/packages/sms/notification-channel-sms)
 
 This package makes it easy to send [Sms notifications] with Laravel 5.4.
 
