@@ -44,6 +44,7 @@ class SmsChannel
         try {
             $to      = $this->getTo($notifiable);
             $message = $notification->toSms($notifiable);
+
             if (is_string($message)) {
                 $message = new SmsMessage($message);
             }
@@ -71,8 +72,8 @@ class SmsChannel
         if ($notifiable->routeNotificationFor('sms')) {
             return $notifiable->routeNotificationFor('sms');
         }
-        if (isset($notifiable->phone)) {
-            return $notifiable->phone;
+        if (isset($notifiable->celular)) {
+            return $notifiable->celular;
         }
         throw CouldNotSendNotification::invalidReceiver();
     }

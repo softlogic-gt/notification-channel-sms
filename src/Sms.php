@@ -39,16 +39,16 @@ class Sms
             $url   = $message->url;
             $token = $message->token;
         } else {
-            if (!$url = config('services.sms.url')) {
+            if (!$url = $this->config->getURL()) {
                 throw CouldNotSendNotification::missingURL();
             }
-            $token = config('services.sms.token');
+            $token = $this->config->getToken();
         }
 
-        $url   = trim($url);
-        $token = trim($token);
-
+        $url    = trim($url);
+        $token  = trim($token);
         $client = new Client;
+
         try {
             switch ($method) {
                 case 'sendMessage':
