@@ -67,9 +67,6 @@ class Sms
             }
             $html = (string) $response->getBody();
         } catch (RequestException $e) {
-            if ($e->hasResponse()) {
-                throw CouldNotSendNotification::errorSending(Psr7\str($e->getResponse()));
-            }
             throw CouldNotSendNotification::errorSending($e->getMessage());
         }
 
