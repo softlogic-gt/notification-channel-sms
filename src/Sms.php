@@ -1,7 +1,6 @@
 <?php
 namespace NotificationChannels\Sms;
 
-use GuzzleHttp\Psr7;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use NotificationChannels\Sms\Exceptions\CouldNotSendNotification;
@@ -37,33 +36,33 @@ class Sms
             $method = $message->method;
         }
         if ($message->url) {
-            $url           = $message->url;
-            $token         = $message->token;
+            $url   = $message->url;
+            $token = $message->token;
         } else {
-            if (!$url = $this->config->getURL()) {
+            if (!$url = config('services.sms.url')) {
                 throw CouldNotSendNotification::missingURL();
             }
-            $token = $this->config->getToken();
+            $token = config('services.sms.token');
         }
-       
-        $url           = trim($url);
-        $token         = trim($token);
+
+        $url   = trim($url);
+        $token = trim($token);
 
         $client = new Client;
         try {
             switch ($method) {
                 case 'sendMessage':
-                    $form_params = array(
-                        'msisdn'   => $to,
-                        'message'  => $message->content,
-                        'id'       => $message->idCode,
-                        'api_key'  => $token
-                    );
+                    $form_params = [
+                        'msisdn'  => $to,
+                        'message' => $message->content,
+                        'id'      => $message->idCode,
+                        'api_key' => $token,
+                    ];
 
                     $response = $client->request('POST', $url, [
-                        'form_params' => $form_params
+                        'form_params' => $form_params,
                     ]);
-                    
+
                     break;
             }
             $html = (string) $response->getBody();

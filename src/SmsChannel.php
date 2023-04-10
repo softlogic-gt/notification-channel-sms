@@ -5,7 +5,6 @@ use Exception;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Notifications\Events\NotificationFailed;
-use Illuminate\Support\Facades\Log;
 use NotificationChannels\Sms\Exceptions\CouldNotSendNotification;
 
 class SmsChannel
@@ -28,8 +27,8 @@ class SmsChannel
      */
     public function __construct(Sms $sms, Dispatcher $events)
     {
-        $this->sms     = $sms;
-        $this->events  = $events;
+        $this->sms    = $sms;
+        $this->events = $events;
     }
 
     /**
@@ -72,8 +71,8 @@ class SmsChannel
         if ($notifiable->routeNotificationFor('sms')) {
             return $notifiable->routeNotificationFor('sms');
         }
-        if (isset($notifiable->celular)) {
-            return $notifiable->celular;
+        if (isset($notifiable->phone)) {
+            return $notifiable->phone;
         }
         throw CouldNotSendNotification::invalidReceiver();
     }
